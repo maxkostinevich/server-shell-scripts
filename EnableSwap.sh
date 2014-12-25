@@ -45,7 +45,7 @@ sysctl -w vm.swappiness=30
 
 #Final output
 clear
-echo "Swap file with size \e[1m$swapSizeValue Mb\e[0m  has been created successfully"
+echo -e "Swap file with size \e[1m$swapSizeValue Mb\e[0m  has been created successfully"
 free | grep Swap
 
 echo 'Swapines value'
