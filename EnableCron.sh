@@ -1,6 +1,6 @@
 #!/bin/bash
 #Autoupdate CentOS 7 with CRON
-#Description: This script will install Apache, MySQL and PHP on your server
+#Description: This script will install CRON on your server
 #Author: Max Kostinevich
 #URL: https://github.com/maxkostinevich/server-shell-scripts/
 
