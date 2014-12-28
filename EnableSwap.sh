@@ -24,31 +24,31 @@ clear
 echo 'Enabling swap file in progress..Please wait'
 
 # Create swap file
-cd /var
-touch swap.img
-chmod 600 swap.img
+sudo cd /var
+sudo touch swap.img
+sudo chmod 600 swap.img
 
 # Set swap size
-dd if=/dev/zero of=/var/swap.img bs=1024 count="${swapSizeValue}k"
+sudo dd if=/dev/zero of=/var/swap.img bs=1024 count="${swapSizeValue}k"
 
 # Prepare the disk image
-mkswap /var/swap.img
+sudo mkswap /var/swap.img
 
 # Enable swap file
-swapon /var/swap.img
+sudo swapon /var/swap.img
 
 # Mount swap on reboot
 echo "/var/swap.img    none    swap    sw    0    0" >> /etc/fstab
 
 # Change swappiness value
-sysctl -w vm.swappiness=30
+sudo sysctl -w vm.swappiness=30
 
 #Final output
 clear
 echo -e "Swap file with size \e[1m$swapSizeValue Mb\e[0m  has been created successfully"
-free | grep Swap
+sudo free | grep Swap
 
 echo 'Swapines value'
-sysctl -a | grep vm.swappiness
+sudo sysctl -a | grep vm.swappiness
 
 fi
