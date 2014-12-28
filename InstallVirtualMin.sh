@@ -17,7 +17,7 @@ serverIP=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([
 #Downloading VirtualMin
 echo -e "\e[1mDownloading VirtualMin installer\e[0m"
 
-wget http://software.virtualmin.com/gpl/scripts/install.sh -O /tmp/virtualmin-install.sh
+sudo wget http://software.virtualmin.com/gpl/scripts/install.sh -O /tmp/virtualmin-install.sh
 
 clear
 echo -e "\e[1mVirtualMin installer has been downloaded successfully\e[0m"
@@ -25,7 +25,7 @@ echo -e "\e[1mVirtualMin installer has been downloaded successfully\e[0m"
 #Run Installer
 echo -e "\e[1mInstalling VirtualMin\e[0m"
 
-sh /tmp/virtualmin-install.sh
+sudo sh /tmp/virtualmin-install.sh
 
 clear
 echo -e "\e[1mVirtualMin has been installed successfully\e[0m"
