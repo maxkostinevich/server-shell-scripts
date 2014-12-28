@@ -28,7 +28,7 @@ clear
 #STEP 1 - Update the system
 echo -e "\e[1mSTEP 1: Update the system \e[0m" 
 
-yum -y update
+sudo yum -y update
 
 clear
 echo -e "\e[1mSystem has been updated successfully\e[0m"
@@ -36,9 +36,9 @@ echo -e "\e[1mSystem has been updated successfully\e[0m"
 #Install CRON
 echo -e "\e[1mInstalling CRON \e[0m" 
 
-yum -y install yum-cron
-chkconfig yum-cron on
-service yum-cron start
+sudo yum -y install yum-cron
+sudo chkconfig yum-cron on
+sudo service yum-cron start
 
 clear
 echo -e "\e[1mCRON has been successfully installed and started\e[0m"
@@ -49,10 +49,10 @@ echo -e "\e[1mSTEP 2: Create New User \e[0m"
 
 read -p "Enter new username (e.g. admin): " newUser
 #Create User
-adduser "$newUser"
-passwd "$newUser"
+sudo adduser "$newUser"
+sudo passwd "$newUser"
 #Grant new user the root privileges
-gpasswd -a "$newUser" wheel
+sudo passwd -a "$newUser" wheel
 
 clear
 echo -e "\e[1mUser '${newUser}' with the root privileges has been created\e[0m"
@@ -63,12 +63,12 @@ echo -e "\e[1mSTEP 3: Add Public Key Authentication \e[0m"
 read -p "Enter your public key for user '${newUser}': " publicKey
 
 
-mkdir "/home/${newUser}/.ssh"
-chmod 700 "/home/${newUser}/.ssh"
-printf  "$publicKey" > "/home/${newUser}/.ssh/authorized_keys"
-chmod 600 "/home/${newUser}/.ssh/authorized_keys"
-chown "${newUser}:${newUser}" "/home/${newUser}/.ssh"
-chown "${newUser}:${newUser}" "/home/${newUser}/.ssh/authorized_keys"
+sudo mkdir "/home/${newUser}/.ssh"
+sudo chmod 700 "/home/${newUser}/.ssh"
+sudo printf  "$publicKey" > "/home/${newUser}/.ssh/authorized_keys"
+sudo chmod 600 "/home/${newUser}/.ssh/authorized_keys"
+sudo chown "${newUser}:${newUser}" "/home/${newUser}/.ssh"
+sudo chown "${newUser}:${newUser}" "/home/${newUser}/.ssh/authorized_keys"
 
 #su - "$newUser"
 #mkdir .ssh
@@ -88,17 +88,17 @@ read -p "Enter new SSH port (49152-65536): " newSSHPort
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config_BACKUP
 
 #Change SSH port
-sed -i "/#Port 22/a Port ${newSSHPort}" /etc/ssh/sshd_config
+sudo sed -i "/#Port 22/a Port ${newSSHPort}" /etc/ssh/sshd_config
 
 #Restrict Root Login
-sed -i "/#PermitRootLogin yes/a PermitRootLogin no" /etc/ssh/sshd_config
+sudo sed -i "/#PermitRootLogin yes/a PermitRootLogin no" /etc/ssh/sshd_config
 
 #Disable authentication by password and enable authentication by ssh key
-sed -i "/#RSAAuthentication yes/a RSAAuthentication yes" /etc/ssh/sshd_config
-sed -i "/#PubkeyAuthentication yes/a PubkeyAuthentication yes" /etc/ssh/sshd_config
-sed -i "s/PasswordAuthentication yes/PasswordAuthentication no/" /etc/ssh/sshd_config
+sudo sed -i "/#RSAAuthentication yes/a RSAAuthentication yes" /etc/ssh/sshd_config
+sudo sed -i "/#PubkeyAuthentication yes/a PubkeyAuthentication yes" /etc/ssh/sshd_config
+sudo sed -i "s/PasswordAuthentication yes/PasswordAuthentication no/" /etc/ssh/sshd_config
 
-systemctl reload sshd.service
+sudo systemctl reload sshd.service
 
 clear
 echo -e "\e[1mSSH config has been updated successfully\e[0m"
