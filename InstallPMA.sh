@@ -16,7 +16,7 @@ serverIP=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([
 #Install EPEL 
 echo -e "\e[1mInstalling EPEL\e[0m"
 
-yum -y install epel-release
+sudo yum -y install epel-release
 
 clear
 echo -e "\e[1mEPEL has been installed and started successfully\e[0m"
@@ -24,7 +24,7 @@ echo -e "\e[1mEPEL has been installed and started successfully\e[0m"
 #Install PHPMyAdmin
 echo -e "\e[1mInstalling PHPMyAdmin\e[0m"
 
-yum -y install phpmyadmin
+sudo yum -y install phpmyadmin
 
 clear
 echo -e "\e[1mPHPMyAdmin has been installed and started successfully\e[0m"
@@ -32,7 +32,7 @@ echo -e "\e[1mPHPMyAdmin has been installed and started successfully\e[0m"
 #Restart Apache
 echo -e "\e[1mRestarting Apache\e[0m"
 
-systemctl restart httpd.service
+sudo systemctl restart httpd.service
 
 clear
 echo -e "\e[1mApache has been restarted successfully\e[0m"
