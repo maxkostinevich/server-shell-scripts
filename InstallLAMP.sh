@@ -18,6 +18,7 @@ echo -e "\e[1mInstalling Apache\e[0m"
 
 sudo yum -y install httpd
 sudo systemctl start httpd.service
+sudo systemctl enable httpd.service
 
 clear
 echo -e "\e[1mApache has been installed and started successfully\e[0m"
