@@ -8,10 +8,10 @@ clear
 
 echo 'Installing CRON..'
 # Install CRON
-yum -y install yum-cron
-chkconfig yum-cron on
+sudo yum -y install yum-cron
+sudo chkconfig yum-cron on
 
-service yum-cron start
+sudo service yum-cron start
 
 #Final output
 clear
