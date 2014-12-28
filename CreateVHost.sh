@@ -14,7 +14,7 @@ read -p "Enter folder name: " folderName
 #Install bind utils
 echo -e "\e[1mInstalling bind utils \e[0m" 
 
-yum -y install bind-utils
+sudo yum -y install bind-utils
 
 clear
 echo -e "\e[1mBind utils has been installed successfully\e[0m"
@@ -22,8 +22,8 @@ echo -e "\e[1mBind utils has been installed successfully\e[0m"
 #Create website directory
 echo -e "\e[1mCreate website directory \e[0m" 
 
-mkdir -p "/var/www/${folderName}/public_html"
-chown -R apache:apache "/var/www/${folderName}/public_html"
+sudo mkdir -p "/var/www/${folderName}/public_html"
+sudo chown -R apache:apache "/var/www/${folderName}/public_html"
 
 clear
 echo -e "\e[1mWebsite directory has been created successfully\e[0m"
@@ -31,7 +31,7 @@ echo -e "\e[1mWebsite directory has been created successfully\e[0m"
 #Add test file
 echo -e "\e[1mCreate test index.php in website directory \e[0m" 
 
-chmod 755 /var/www
+sudo chmod 755 /var/www
 printf  "${domainName} <br /> <?php echo 'PHP is OK'?>" > "/var/www/${folderName}/public_html/index.php"
 
 clear
@@ -43,7 +43,7 @@ vhostsDir=/etc/httpd/sites-enabled
 if [ ! -d "$vhostsDir" ]; then
 echo -e "\e[1mUpdate Apache config\e[0m" 
 
-mkdir $vhostsDir
+sudo mkdir $vhostsDir
 echo '#Load Virtual Hosts' >> /etc/httpd/conf/httpd.conf
 echo 'IncludeOptional sites-enabled/*.conf' >> /etc/httpd/conf/httpd.conf
 
@@ -54,7 +54,7 @@ fi
 #Create config file for new host
 echo -e "\e[1mCreate config file for new host\e[0m"
 
-cat <<EOT >> "/etc/httpd/sites-enabled/${folderName}.conf"
+sudo cat <<EOT >> "/etc/httpd/sites-enabled/${folderName}.conf"
 <VirtualHost *:80>
      ServerAdmin admin@${domainName}
      DocumentRoot /var/www/${folderName}/public_html
@@ -73,7 +73,7 @@ echo -e "\e[1mConfig file has been created successfully\e[0m"
 #Restart Apache
 echo -e "\e[1mRestart Apache\e[0m"
 
-systemctl restart httpd.service
+sudo systemctl restart httpd.service
 
 clear
 echo -e "\e[1mApache has been restarted successfully\e[0m"
