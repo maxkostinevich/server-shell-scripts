@@ -32,7 +32,7 @@ echo -e "\e[1mWebsite directory has been created successfully\e[0m"
 echo -e "\e[1mCreate test index.php in website directory \e[0m" 
 
 sudo chmod 755 /var/www
-printf  "${domainName} <br /> <?php echo 'PHP is OK'?>" > "/var/www/${folderName}/public_html/index.php"
+sudo printf  "${domainName} <br /> <?php echo 'PHP is OK'?>" > "/var/www/${folderName}/public_html/index.php"
 
 clear
 echo -e "\e[1mTest index.php has been created successfully\e[0m"
@@ -44,8 +44,8 @@ if [ ! -d "$vhostsDir" ]; then
 echo -e "\e[1mUpdate Apache config\e[0m" 
 
 sudo mkdir $vhostsDir
-echo '#Load Virtual Hosts' >> /etc/httpd/conf/httpd.conf
-echo 'IncludeOptional sites-enabled/*.conf' >> /etc/httpd/conf/httpd.conf
+sudo echo '#Load Virtual Hosts' >> /etc/httpd/conf/httpd.conf
+sudo echo 'IncludeOptional sites-enabled/*.conf' >> /etc/httpd/conf/httpd.conf
 
 clear
 echo -e "\e[1mApache config has been updated successfully\e[0m"
