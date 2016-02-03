@@ -1,6 +1,8 @@
 Server shell scripts
 ====================
 
+**EDIT February 03, 2016: Detailed Guideline is coming soon**
+
 Bunch of useful shell scripts which you can use to quick setup your VPS server.
 
 These scripts are created to quick setup VPS server with CentOS 7 
@@ -43,3 +45,7 @@ And then run the script using **sh** or **bash** command:
 **CreateVHost.sh** *(recommended)* — This script will help you to create new virtual host on you server.
 
 **InstallVirtualMin.sh** *(optional)* — This script will install VirtualMin on your server.
+
+##Notes
+
+If you are using PuTTY Gen to generate your ssh-keys and use terminal other than PuTTY (e.g: CygWin, MinGW, etc) for ssh connection - please do not forget to convert your private ssh-key from PuTTY format into OpenSSH format, to do this just go to PuTTY Gen Menu -> Conversions -> Export SSH key
