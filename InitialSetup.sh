@@ -52,7 +52,7 @@ read -p "Enter new username (e.g. admin): " newUser
 sudo adduser "$newUser"
 sudo passwd "$newUser"
 #Grant new user the root privileges
-sudo passwd -a "$newUser" wheel
+sudo usermod -aG wheel "$newUser"
 
 clear
 echo -e "\e[1mUser '${newUser}' with the root privileges has been created\e[0m"
